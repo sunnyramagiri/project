@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  node:
+    build: ./
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+      - webserver
+    environment:
+      - DB_HOST=mysql
+      - DB_USER=root
+      - DB_PASS=yourpassword
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: yourpassword
+      MYSQL_DATABASE: testdb
+    ports:
+      - "7070:3306"  # Corrected port mapping format (host:container)
+
+  webserver:
+    image: tomcat:9.0
+    ports:
+      - "9090:8080"  # Corrected port mapping format (host:container)
+

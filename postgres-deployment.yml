@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgress-deployment
+  labels:
+    name: postgress-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: postgress-deployment
+  template:
+    metadata:
+      name: postgress-deployment
+      labels:
+        name: postgress-deployment
+    spec:
+      containers:
+        - name: postgress-deployment
+          image: postgres
+          env:
+            - name: POSTGRES_PASSWORD
+              value: sunny
+            - name: POSTGRES_USER
+              value: sunny
+            - name: POSTGRES_DB
+              value: sunny
